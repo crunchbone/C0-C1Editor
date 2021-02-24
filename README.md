@@ -1,4 +1,4 @@
-# C0-C0Editor 
+# C0-C1Editor 
 This is an opensource joint C0 and C1 editor currently in version v0.9
   
 ## Versions
