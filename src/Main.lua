@@ -3,7 +3,7 @@ local Selection = game:GetService("Selection")
 local UIS = game:GetService("UserInputService")
 local active = false
 local rotate = false
-local ToolBar = plugin:CreateToolbar("Welder by crunchbone")
+local ToolBar = plugin:CreateToolbar("Joint manipulator")
 
 local button = ToolBar:CreateButton('C0/C1 editor', 'edit weld c0 and c1', '')
 
