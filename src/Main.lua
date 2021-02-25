@@ -61,7 +61,7 @@ local function Handler(k)
 		if not rotate then
 			if CurrentHandle.Adornee == CurrentWeld.Part0 then
 				ChangeHistoryService:SetWaypoint('nil')
-				CurrentWeld.C0 = CurrentWeld.C0*CFrame.new(vegtor/10)
+				CurrentWeld.C0*=CFrame.new(vegtor/10)
 				--("C)")
 				--(vegtor)
 				--(CurrentWeld.C0)
@@ -69,13 +69,13 @@ local function Handler(k)
 				--("C1")
 				--(vegtor)
 				ChangeHistoryService:SetWaypoint('nil')
-				CurrentWeld.C1 = CurrentWeld.C1*CFrame.new(vegtor/10)
+				CurrentWeld.C1*=CFrame.new(vegtor/10)
 				--(CurrentWeld.C1)
 			end
 		elseif rotate then
 			if CurrentHandle.Adornee == CurrentWeld.Part0 then
 				ChangeHistoryService:SetWaypoint('nil')
-				CurrentWeld.C0 = CurrentWeld.C0*CFrame.fromAxisAngle(vegtor,1)
+				CurrentWeld.C0*=CFrame.fromAxisAngle(vegtor,0.1)
 				--("C)")
 				--(vegtor)
 				--(CurrentWeld.C0)
@@ -83,7 +83,7 @@ local function Handler(k)
 				--("C1")
 				--(vegtor)
 				ChangeHistoryService:SetWaypoint('nil')
-				CurrentWeld.C1 = CurrentWeld.C1*CFrame.fromAxisAngle(vegtor,1)
+				CurrentWeld.C1*=CFrame.fromAxisAngle(vegtor,0.1)
 				--(CurrentWeld.C1)
 			end
 		end
