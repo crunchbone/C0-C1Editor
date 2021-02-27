@@ -1,6 +1,9 @@
 # C0-C1Editor 
 This is an opensource joint C0 and C1 editor currently in version v0.9
-  
+ 
+### Known issues
+- No error handling
+ 
 ## Versions
 - v0.8
   - Basic movement and switching between C0 and C1
