@@ -1,19 +1,21 @@
+local VERSION = '0.9.1'
+local LASTUPDATE = 'Mon Mar  1 15:43:48 2021 UTC'
+--os.date("!%c")  UTC time string
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local Selection = game:GetService("Selection")
 local UIS = game:GetService("UserInputService")
 local active = false
 local rotate = false
 local ToolBar = plugin:CreateToolbar("Joint manipulator")
+local button = ToolBar:CreateButton('C0/C1 editor', 'edit JointInstance c0 and c1', '') or ToolBar:CreateButton('C0/C1 editor '..VERSION, 'edit JointInstance c0 and c1\nlast update: '..LASTUPDATE, '')
 
-local button = ToolBar:CreateButton('C0/C1 editor', 'edit weld c0 and c1', '')
+local Handle = Instance.new("SelectionBox")
+Handle.LineThickness = 0.09
 
-local Handle = Instance.new("Handles")
-Handle.Style = Enum.HandlesStyle.Movement
 local CurrentWeld = Instance
 local CurrentHandle = Instance
 
 local function ToggleC()
-	--(active)
 	if active then
 		if CurrentHandle.Adornee == CurrentWeld.Part0 then
 			CurrentHandle.Adornee = CurrentWeld.Part1
@@ -36,7 +38,6 @@ end
 
 local function Handler(k)
 	local vegtor
-	--("handler")
 	if k.KeyCode == Enum.KeyCode.H or k.KeyCode == Enum.KeyCode.K then --X
 		if k.KeyCode == Enum.KeyCode.H then
 			vegtor = Vector3.FromNormalId(Enum.NormalId.Left)
@@ -57,41 +58,27 @@ local function Handler(k)
 		end
 	end
 	if active then
-		--("g")
 		if not rotate then
 			if CurrentHandle.Adornee == CurrentWeld.Part0 then
-				ChangeHistoryService:SetWaypoint('nil')
 				CurrentWeld.C0*=CFrame.new(vegtor/10)
-				--("C)")
-				--(vegtor)
-				--(CurrentWeld.C0)
+				ChangeHistoryService:SetWaypoint('Move C0')
 			else
-				--("C1")
-				--(vegtor)
-				ChangeHistoryService:SetWaypoint('nil')
 				CurrentWeld.C1*=CFrame.new(vegtor/10)
-				--(CurrentWeld.C1)
+				ChangeHistoryService:SetWaypoint('Move C1')
 			end
 		elseif rotate then
 			if CurrentHandle.Adornee == CurrentWeld.Part0 then
-				ChangeHistoryService:SetWaypoint('nil')
 				CurrentWeld.C0*=CFrame.fromAxisAngle(vegtor,0.1)
-				--("C)")
-				--(vegtor)
-				--(CurrentWeld.C0)
+				ChangeHistoryService:SetWaypoint('Rotate C0')
 			else
-				--("C1")
-				--(vegtor)
-				ChangeHistoryService:SetWaypoint('nil')
 				CurrentWeld.C1*=CFrame.fromAxisAngle(vegtor,0.1)
-				--(CurrentWeld.C1)
+				ChangeHistoryService:SetWaypoint('Rotate C1')
 			end
 		end
 	end
 end
 
 local function ButtonHandler(k, r)
-	--("hand")
 	if k.KeyCode == Enum.KeyCode.Equals then
 		ToggleRot()
 	end
@@ -105,7 +92,6 @@ end
 
 local function ButtonEvent()
 	if not active then
-		ChangeHistoryService:SetWaypoint('nil')
 		active = not active
 		local Handles = Handle:Clone()
 		Handles.Parent = workspace.CurrentCamera
@@ -114,11 +100,12 @@ local function ButtonEvent()
 		Handles.Adornee = CurrentWeld.Part0
 		CurrentHandle.Color3 = Color3.fromRGB(0, 170, 255)
 		if rotate then rotate = not rotate end
+		ChangeHistoryService:SetWaypoint('Toggle plugin')
 	else
-		ChangeHistoryService:SetWaypoint('nil')
 		active = not active
 		CurrentHandle = nil
-		workspace.CurrentCamera.Handles:Destroy()
+		workspace.CurrentCamera.SelectionBox:Destroy()
+		ChangeHistoryService:SetWaypoint('Toggle plugin')
 	end
 end
 
