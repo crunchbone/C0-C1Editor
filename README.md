@@ -11,3 +11,6 @@ This is an opensource joint C0 and C1 editor currently in version v0.9
   - Rotation, different color handles, ChangeHistoryService added
 - v0.9.1
   - Fixed undo issue
+- v0.9.2
+  - Switched Handles for SelectionBox
+  - Added Version history
